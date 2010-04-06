@@ -5,7 +5,7 @@ p. Jaml is an HTML-templating engine for JavaScript.  It allows one to easily ge
 
 p. Jaml mimics "Haml":http://haml-lang.com/ as closely as possible, but with embedded JavaScript instead of Ruby.  Most of what you need to know to use Jaml can be learned from reading the Haml documentation.
 
-p. Jaml is implemented as an external DSL.  One writes one's templates in Jaml format then uses the _jamlize_ utility to translate those templates to JavaScript code.
+p. Jaml is implemented as an external DSL.  One writes one's templates in Jaml format then uses the @jamlize@ utility to translate those templates to JavaScript code.
 
 
 h2. Requirements
@@ -13,7 +13,7 @@ h2. Requirements
 p. The Jaml source-to-source translater is written in "Haskell":http://www.haskell.org/.  As such, one needs a Haskell compiler to build the executable.  Jaml has been tested only with "GHC":http://www.haskell.org/ghc/.
 
 
-h2. Not *that* Jaml
+h2. Not _that_ Jaml
 
 p. There's "another project":http://github.com/edspencer/jaml also called Jaml.  It's very cool, but different.
 
@@ -24,12 +24,12 @@ p. There's "another project":http://github.com/edspencer/jaml also called Jaml. 
 ** is meant to be as close as possible to Haml.
 ** is an external DSL which source-to-source translates to JavaScript.
 
-We chose to keep the name "Jaml" in spite of the name collision, because we've already been using it at "Glyde.com":http://glyde.com/ for a few years.
+We chose to keep the name "Jaml" in spite of the name collision, because we've already been using it at "Glyde":http://glyde.com/ for a few years.
 
 
 h2. Example
 
-This example was stolen from the *other* Jaml's README.
+This example was stolen from the _other_ Jaml's README.
 
 <pre>
 %template.MyJsClass#_render{args: [product]}
@@ -55,13 +55,13 @@ h3. Multiple templates per file
 
 p. With Haml, each template lives in its own file.  But with Jaml, each .jaml file may contain more than one template.  Each template is translated into a JavaScript function.
 
-p. Each template begins with a %template tag, like this: <pre>%template.MyClass#my_function{args: [arg1, arg2]}</pre>
+p. Each template begins with a @%template@ tag, like this: <pre>%template.MyClass#my_function{args: [arg1, arg2]}</pre>
 
-p. _MyClass_ is the name of the JavaScript object (if any) for which the function is to be a member.  These can be nested, with each level of nesting separated by dots ('.').
+p. @MyClass@ is the name of the JavaScript object (if any) for which the function is to be a member.  These can be nested, with each level of nesting separated by dots ('.').
 
-p. _my_function_ is the name of the function we're creating.
+p. @my_function@ is the name of the function we're creating.
 
-p. The curly-brace-enclosed object literal is optional.  Currently, it supports only one key, 'args', whose value is expected to be a JavaScript Array, the formal parameters (if any) to the function.
+p. The curly-brace-enclosed object literal (@{args: [arg1, arg2]}@) is optional.  Currently, it supports only one key, @args@, whose value is expected to be a JavaScript Array, the formal parameters (if any) to the function.
 
 
 h3. No support for '|'
@@ -71,6 +71,11 @@ p. Haml allows lines to end with '|', indicating that it's part of a multiline s
 
 h3. Code comments
 
-p. In addition to Haml's '-#' code comments, Jaml also supports '-//'.
+p. In addition to Haml's @-#@ code comments, Jaml also supports @-//@.
 
 p. HTML (and IE conditional comments) are the same as in Haml.
+
+
+h2. Help
+
+p. Please contact the author with questions.
