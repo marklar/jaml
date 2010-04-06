@@ -1,20 +1,31 @@
 
 h1. Jaml: Haml templates for JavaScript
 
-p. Jaml allows one to easily generate HTML in one's JavaScript project.
+p. Jaml is an HTML-templating engine for JavaScript.  It allows one to easily generate HTML in one's JavaScript project.
 
-p. Jaml mimics Haml (http://haml-lang.com/) as closely as possible, but with embedded JavaScript instead of Ruby.
+p. Jaml mimics "Haml":http://haml-lang.com/ as closely as possible, but with embedded JavaScript instead of Ruby.  Most of what you need to know to use Jaml can be learned from reading the Haml documentation.
 
 p. Jaml is implemented as an external DSL.  One writes one's templates in Jaml format then uses the _jamlize_ utility to translate those templates to JavaScript code.
 
-p. There's another project also called Jaml (http://github.com/edspencer/jaml).  It's very cool, but different.
 
-* _That_ Jaml:
+h2. Requirements
+
+p. The Jaml source-to-source translater is written in "Haskell":http://www.haskell.org/.  As such, one needs a Haskell compiler to build the executable.  Jaml has been tested only with "GHC":http://www.haskell.org/ghc/.
+
+
+h2. Not *that* Jaml
+
+p. There's "another project":http://github.com/edspencer/jaml also called Jaml.  It's very cool, but different.
+
+* *That* Jaml:
 ** allows one to write something similar to (but different from) Haml.
 ** is an internal DSL in JavaScript.
-* _This_ Jaml:
+* *This* Jaml:
 ** is meant to be as close as possible to Haml.
 ** is an external DSL which source-to-source translates to JavaScript.
+
+We chose to keep the name "Jaml" in spite of the name collision, because we've already been using it at "Glyde.com":http://glyde.com/ for a few years.
+
 
 h2. Example
 
@@ -36,16 +47,15 @@ This example was stolen from the *other* Jaml's README.
       %input{type: 'submit', value: 'Add to Cart'}
 </pre>
 
+
 h2. Differences from Haml
+
 
 h3. Multiple templates per file
 
-p. With Haml, each template lives in its own file.
+p. With Haml, each template lives in its own file.  But with Jaml, each .jaml file may contain more than one template.  Each template is translated into a JavaScript function.
 
-p. With Jaml, each .jaml file may contain more than one template.  Each template is translated into a JavaScript function.
-
-p. Each template begins with a %template tag, like this:
-<pre>%template.MyClass#my_function{args: [arg1, arg2]}</pre>
+p. Each template begins with a %template tag, like this: <pre>%template.MyClass#my_function{args: [arg1, arg2]}</pre>
 
 p. _MyClass_ is the name of the JavaScript object (if any) for which the function is to be a member.  These can be nested, with each level of nesting separated by dots ('.').
 
@@ -56,11 +66,11 @@ p. The curly-brace-enclosed object literal is optional.  Currently, it supports 
 
 h3. No support for '|'
 
-Haml allows lines to end with '|', indicating that it's part of a multiline string.  Jaml does not currently support this.
+p. Haml allows lines to end with '|', indicating that it's part of a multiline string.  Jaml does not currently support this.
 
 
 h3. Code comments
 
-In addition to Haml's '-#' code comments, Jaml also supports '-//'.
+p. In addition to Haml's '-#' code comments, Jaml also supports '-//'.
 
-HTML (and IE conditional comments) are the same as in Haml.
+p. HTML (and IE conditional comments) are the same as in Haml.
