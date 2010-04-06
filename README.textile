@@ -12,6 +12,8 @@ h2. Requirements
 
 p. The Jaml source-to-source translater is written in "Haskell":http://www.haskell.org/.  As such, one needs a Haskell compiler to build the executable.  Jaml has been tested only with "GHC":http://www.haskell.org/ghc/.
 
+p. We use Rake (Ruby Make) to build the @jamlize@ executable.  If you prefer not to use Rake, the Rakefile is very simple and could easily be ported to Make or a simple shell script.
+
 
 h2. Not _that_ Jaml
 
@@ -29,26 +31,27 @@ We chose to keep the name "Jaml" in spite of the name collision, because we've a
 
 h2. Example
 
-This example was stolen from the _other_ Jaml's README.
+This example was shamelessly stolen (and expanded) from the _other_ Jaml's README.
 
 <pre>
 // File: my_class.jaml
-%template.MyJsClass#render{args: [product]}
+%template.MyJsClass#render{ args: [product] }
   .product
     %h1= product.title
 
     %p= product.description
 
-    %img{src: product.thumbUrl}
-    %a{href: product.imageUrl} View larger image
+    %img{ src: product.thumbUrl }
+    if (product.imageUrl)
+      %a{ href: product.imageUrl } View larger image
 
     %form
-      %label{for: 'quantity'} Quantity
+      %label{ for: 'quantity' } Quantity
       %input#quantity{ type:  'text',
                        name:  'quantity',
                        value: 1
                      }
-      %input{ type: 'submit',
+      %input{ type:  'submit',
               value: 'Add to Cart'
             }
 </pre>
@@ -66,13 +69,13 @@ h3. Multiple templates per file
 
 p. With Haml, each template lives in its own file.  But with Jaml, each .jaml file may contain more than one template.  Each template is translated into a JavaScript function.
 
-p. Each template begins with a @%template@ tag, like this: <pre>%template.MyClass#my_function{args: [arg1, arg2]}</pre>
+p. Each template begins with a @%template@ tag, like this: <pre>%template.MyClass#my_function{ args: [arg1, arg2] }</pre>
 
 p. @MyClass@ is the name of the JavaScript object (if any) for which the function is to be a member.  These can be nested, with each level of nesting separated by dots ('.').
 
 p. @my_function@ is the name of the function we're creating.
 
-p. The curly-brace-enclosed object literal (@{args: [arg1, arg2]}@) is optional.  Currently, it supports only one key, @args@, whose value is expected to be a JavaScript Array, the formal parameters (if any) to the function.
+p. The curly-brace-enclosed object literal @{ args: [arg1, arg2] }@ is optional.  Currently, it supports only one key, @args@, whose value is expected to be a JavaScript Array, the formal parameters (if any) to the function.
 
 
 h3. No support for '|'
