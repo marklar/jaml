@@ -53,32 +53,6 @@ This example was stolen from the _other_ Jaml's README.
             }
 </pre>
 
-When translated to JavaScript, the code will look like this unreadable mess (but that's okay; it's not meant for human consumption):
-<pre>
-// File: my_class_jaml.js
-MyJsClass.prototype.render=function(product) {
-  var _J=Jaml(), _j=new _J();
-  _j.ns('<div');_j.s(' class="product"');_j.s('>');
-    _j.ns('<h1');_j.s('>'+(product.title));
-    _j.ns('</h1>');
-    _j.ns('<p');_j.s('>'+(product.description));
-    _j.ns('</p>');
-    _j.ns('<img');_j.s(' src="'+(product.thumbUrl)+'"');_j.s(' />');
-    _j.ns('<a');_j.s(' href="'+(product.imageUrl)+'"');_j.s('>View larger image');
-    _j.ns('</a>');
-    _j.ns('<form');_j.s('>');
-      _j.ns('<label');_j.s(' for="'+('quantity')+'"');_j.s('>Quantity');
-      _j.ns('</label>');
-      _j.ns('<input');_j.s(' id="jaml.jsquantity"');_j.s(' type="'+('text')+'"');_j.s(' name="'+('quantity')+'"');_j.s(' value="'+(1)+'"');_j.s('>');
-      _j.ns('</input>');
-      _j.ns('<input');_j.s(' type="'+('submit')+'"');_j.s(' value="'+('Add to Cart')+'"');_j.s('>');
-      _j.ns('</input>');
-    _j.ns('</form>');
-  _j.ns('</div>');
-  return _j.v();
-};
-</pre>
-
 To use:
 # Include jaml.js in your project.
 # Translate the .jaml file to JavaScript: <pre>bin/jamlize my_class.jaml > my_class_jaml.js</pre>
